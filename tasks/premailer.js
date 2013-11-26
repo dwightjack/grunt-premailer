@@ -11,7 +11,7 @@
 module.exports = function(grunt) {
 
   var dargs = require('dargs'),
-      _ = grunt.util._;
+      _ = require('lodash');
 
   grunt.registerMultiTask('premailer', 'Grunt wrapper task for premailer', function() {
     // Merge task-specific and/or target-specific options with these defaults.

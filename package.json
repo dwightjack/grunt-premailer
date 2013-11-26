@@ -1,7 +1,7 @@
 {
   "name": "grunt-premailer",
   "description": "Grunt wrapper task for premailer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/dwightjack/grunt-premailer",
   "author": {
     "name": "Marco Solazzi",
@@ -29,18 +29,19 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-nodeunit": "~0.2.1",
-    "grunt": "~0.4.1"
+    "grunt-contrib-nodeunit": "~0.2.2",
+    "grunt": "~0.4.2"
   },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.2"
   },
   "keywords": [
     "gruntplugin"
   ],
   "dependencies": {
-    "dargs": "~0.1.0"
+    "dargs": "~0.1.0",
+    "lodash": "~2.4.0"
   }
 }
