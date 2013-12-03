@@ -49,8 +49,9 @@ module.exports = function(grunt) {
         options: {
           baseUrl: 'http://www.mydomain.com/',
           queryString: 'foo=bar',
-          css: ['test/fixtures/external.css'],
-          removeClasses: true
+          css: ['test/fixtures/css/external.css'],
+          removeClasses: true,
+          preserveStyles: true
         },
         files: {
           'tmp/email-full.html': ['test/fixtures/email-full.html'],

@@ -42,23 +42,25 @@ exports.premailer = {
 
     var actual = grunt.file.read('tmp/email.txt');
     var expected = grunt.file.read('test/expected/email.txt');
-    test.equal(actual, expected, 'Email converted from HTML to plain text');
+    test.equal(actual, expected + "\n", 'Email converted from HTML to plain text');
 
     test.done();
   },
 
   full: function(test) {
-    test.expect(3);
+    test.expect(5);
 
     var actual = grunt.file.read('tmp/email-full.html');
 
     var bodyClassRegex = /class=("|')[^'"]*body\-class/;
 
-    var externalCSSRegex = /<body style="[^"]*margin: 10px/;
+    var externalCSSRegex = /<body style="[^"]*color: red/;
 
     test.equal(bodyClassRegex.test(actual), false, "Class attributes removed");
     test.ok(externalCSSRegex.test(actual), "External CSS applied");
     test.ok(actual.indexOf('<a href="http://www.mydomain.com/link.php?foo=bar">') !== -1, "Base URL and query string applied");
+    test.equal(actual.indexOf('<script'), -1, "Script tags removed");
+    test.ok(actual.indexOf('<style') !== -1, "Style tags are kept in source");
 
     test.done();
   },

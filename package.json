@@ -1,7 +1,7 @@
 {
   "name": "grunt-premailer",
   "description": "Grunt wrapper task for premailer",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "homepage": "https://github.com/dwightjack/grunt-premailer",
   "author": {
     "name": "Marco Solazzi",
@@ -42,6 +42,7 @@
   ],
   "dependencies": {
     "dargs": "~0.1.0",
-    "lodash": "~2.4.0"
+    "lodash": "~2.4.1",
+    "async": "~0.2.9"
   }
 }

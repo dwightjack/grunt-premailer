@@ -10,7 +10,7 @@ This plugin is a [Grunt](http://gruntjs.com/)  wrapper around the [Premailer](ht
 * Node.js >= 0.8.11 ([install wiki](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
 * Grunt-cli >= 0.1.7 and Grunt >=0.4.1 (`npm install grunt-cli -g`)
 * Ruby >= 1.8.7 ([installers](http://www.ruby-lang.org/en/downloads/))
-* Premailer >= 1.7.3 (`gem install premailer` and, most of the time, `gem install hpricot`)
+* Premailer >= 1.7.8 (`gem install premailer` and, most of the time, `gem install hpricot`)
 
 ## Getting Started
 
@@ -78,6 +78,19 @@ Default value: `false`
 
 Removes HTML classes.
 
+#### options.removeComments
+Type: `Boolean`
+Default value: `false`
+
+Removes HTML comments.
+
+
+#### options.preserveStyles
+Type: `Boolean`
+Default value: `false`
+
+Preserve any `link rel=stylesheet` and `style` elements.
+
 #### options.lineLength
 Type: `Number`
 Default value: `65`
@@ -136,6 +149,8 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+0.2 - Moved to custom ruby script to execute premailer instead of `premailer` binary. Added `removeComments` and `preserveStyles` options. Premailer not requires v1.7.8 or greater.
 
 0.1.1 - Replaced [deprecated](http://gruntjs.com/blog/2013-11-21-grunt-0.4.2-released) reference to `grunt.util._` with `lodash` npm module
 
