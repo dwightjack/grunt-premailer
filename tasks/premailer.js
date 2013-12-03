@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     var args = {},
         done = this.async(),
         options = this.options({
-        baseUrl: '',
+        baseUrl: null,
         queryString: '',
         css: [],
         removeClasses: false,
@@ -47,8 +47,6 @@ module.exports = function(grunt) {
 
 
     args = dargs(args);
-
-
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
