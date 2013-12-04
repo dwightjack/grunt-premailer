@@ -11,5 +11,5 @@
 	"unescape_strings": false,
 	"break_chained_methods": false,
 	"e4x": false,
-	"wrap_line_length": 0,
+	"wrap_line_length": 0
 }
