@@ -157,7 +157,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-0.2 - Moved to custom ruby script to execute premailer instead of `premailer` binary. Added `removeComments` and `preserveStyles` options. Premailer not requires v1.7.8 or greater.
+0.2.0 - Moved to custom ruby script to execute premailer instead of `premailer` binary. Added `removeComments` and `preserveStyles` options. Premailer not requires v1.7.8 or greater.
 
 0.1.1 - Replaced [deprecated](http://gruntjs.com/blog/2013-11-21-grunt-0.4.2-released) reference to `grunt.util._` with `lodash` npm module
 
