@@ -10,7 +10,7 @@ This plugin is a [Grunt](http://gruntjs.com/)  wrapper around the [Premailer](ht
 * Node.js >= 0.8.11 ([install wiki](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
 * Grunt-cli >= 0.1.7 and Grunt >=0.4.1 (`npm install grunt-cli -g`)
 * Ruby >= 1.8.7 ([installers](http://www.ruby-lang.org/en/downloads/))
-* Premailer >= 1.7.3 (`gem install premailer` and, most of the time, `gem install hpricot`)
+* Premailer >= 1.7.8 (`gem install premailer` and, most of the time, `gem install hpricot`)
 
 ## Getting Started
 
@@ -70,13 +70,26 @@ Query string to append to links.
 Type: `Array`
 Default value: `[]`
 
-Additional CSS stylesheets to process.
+Additional CSS stylesheets to process. Paths are relative to the `Gruntfile.js` file. Any Grunt compatible globbing and template syntax is supported. 
 
 #### options.removeClasses
 Type: `Boolean`
 Default value: `false`
 
 Removes HTML classes.
+
+#### options.removeComments
+Type: `Boolean`
+Default value: `false`
+
+Removes HTML comments.
+
+
+#### options.preserveStyles
+Type: `Boolean`
+Default value: `false`
+
+Preserve any `link rel=stylesheet` and `style` elements.
 
 #### options.lineLength
 Type: `Number`
@@ -132,10 +145,19 @@ grunt.initConfig({
 })
 ```
 
+####Usage Notes
+
+**`BaseUrl` option and stylesheets parsing**
+
+Be aware that the base URL gets applied _before_ inlining styles. This process will convert all relative linked stylesheets to absolute ones, possibly preventing the parser to retrieve the resources (since `link` tags point to a different location).  
+In this scenario it's advisable to use the `css` option since it's uneffected from `BaseUrl`.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+0.2 - Moved to custom ruby script to execute premailer instead of `premailer` binary. Added `removeComments` and `preserveStyles` options. Premailer not requires v1.7.8 or greater.
 
 0.1.1 - Replaced [deprecated](http://gruntjs.com/blog/2013-11-21-grunt-0.4.2-released) reference to `grunt.util._` with `lodash` npm module
 

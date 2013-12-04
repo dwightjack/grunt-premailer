@@ -12,6 +12,11 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+
+    paths: {
+        fixtures: 'test/fixtures'
+    },
+
     jshint: {
       all: [
         'Gruntfile.js',
@@ -34,7 +39,7 @@ module.exports = function(grunt) {
         options: {
         },
         files: {
-          'tmp/email.html': ['test/fixtures/email.html'],
+          'tmp/email.html': ['<%= paths.fixtures %>/email.html'],
         },
       },
       txt: {
@@ -42,18 +47,19 @@ module.exports = function(grunt) {
           mode: 'txt'
         },
         files: {
-          'tmp/email.txt': ['test/fixtures/email.html'],
+          'tmp/email.txt': ['<%= paths.fixtures %>/email.html'],
         },
       },
       full: {
         options: {
           baseUrl: 'http://www.mydomain.com/',
           queryString: 'foo=bar',
-          css: ['test/fixtures/external.css'],
-          removeClasses: true
+          css: ['<%= paths.fixtures %>/css/*.css'],
+          removeClasses: true,
+          preserveStyles: true
         },
         files: {
-          'tmp/email-full.html': ['test/fixtures/email-full.html'],
+          'tmp/email-full.html': ['<%= paths.fixtures %>/email-full.html'],
         },
       }
     },
