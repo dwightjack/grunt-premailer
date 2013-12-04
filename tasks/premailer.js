@@ -47,9 +47,22 @@ module.exports = function(grunt) {
 
         //also manage properly the css option
         if (_.has(args, 'css') && Array.isArray(args.css)) {
-            args.css = args.css.join(',');
-        }
+            args.css = _(args.css)
+                        .map(function (csspath) {
+                            return grunt.config.process(csspath);
+                        })
+                        .reduce(function (paths, csspath) {
+                            var expanded = grunt.file.expand({
+                                filter: function (src) {
+                                    return grunt.file.isFile(src) && (path.extname(src) === '.css');
+                                }
+                            }, csspath);
 
+                            return paths.concat(expanded);
+                        }, [])
+                        .valueOf()
+                        .join(',');
+        }
 
         args = dargs(args);
 

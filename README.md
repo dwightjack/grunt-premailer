@@ -70,7 +70,7 @@ Query string to append to links.
 Type: `Array`
 Default value: `[]`
 
-Additional CSS stylesheets to process.
+Additional CSS stylesheets to process. Paths are relative to the `Gruntfile.js` file. Any Grunt compatible globbing and template syntax is supported. 
 
 #### options.removeClasses
 Type: `Boolean`
@@ -144,6 +144,13 @@ grunt.initConfig({
   }
 })
 ```
+
+####Usage Notes
+
+**`BaseUrl` option and stylesheets parsing**
+
+Be aware that the base URL gets applied _before_ inlining styles. This process will convert all relative linked stylesheets to absolute ones, possibly preventing the parser to retrieve the resources (since `link` tags point to a different location).  
+In this scenario it's advisable to use the `css` option since it's uneffected from `BaseUrl`.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
