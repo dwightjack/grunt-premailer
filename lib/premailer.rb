@@ -55,7 +55,7 @@ opts = OptionParser.new do |opts|
     options[:remove_classes] = v
   end
 
-  opts.on("--remove-comments ", "Remove HTML comments") do |v|
+  opts.on("--remove-comments", "Remove HTML comments") do |v|
     options[:remove_comments] = v
   end
 
