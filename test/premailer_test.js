@@ -37,6 +37,16 @@ exports.premailer = {
     test.done();
   },
 
+  multiple: function(test) {
+    test.expect(1);
+
+    var first = grunt.file.read('tmp/email.html');
+    var second = grunt.file.read('tmp/email-2.html');
+    test.notStrictEqual(first, second, 'Multiple file targets are processed independently.');
+
+    test.done();
+  },
+
   txt: function(test) {
     test.expect(1);
 
