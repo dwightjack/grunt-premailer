@@ -157,7 +157,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-0.2.1 - Bigfix in custom premailer script
+0.2.2 Bugfix when passing multiple file targets (see #5)
+
+0.2.1 Bugfix in custom premailer script
 
 0.2.0 - Moved to custom ruby script to execute premailer instead of `premailer` binary. Added `removeComments` and `preserveStyles` options. Premailer not requires v1.7.8 or greater.
 

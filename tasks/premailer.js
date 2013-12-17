@@ -93,8 +93,8 @@ module.exports = function(grunt) {
                 next();
             }
 
-            //generate a tem file with cncatened source
-            tmpFile = path.join(path.dirname(f.dest), '_tmp_premailer.html');
+            //generate a temp file with concatened source
+            tmpFile = path.join(path.dirname(f.dest), _.uniqueId('_tmp_premailer_') + '.html');
             grunt.file.write(tmpFile, src);
 
             batchArgs = args.concat(['--file-in', tmpFile, '--file-out', f.dest]);

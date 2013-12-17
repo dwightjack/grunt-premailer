@@ -42,6 +42,12 @@ module.exports = function(grunt) {
           'tmp/email.html': ['<%= paths.fixtures %>/email.html'],
         },
       },
+      multiple: {
+        files: {
+          'tmp/email.html': ['<%= paths.fixtures %>/email.html'],
+          'tmp/email-2.html': ['<%= paths.fixtures %>/email-2.html']
+        },
+      },
       txt: {
         options: {
           mode: 'txt'
