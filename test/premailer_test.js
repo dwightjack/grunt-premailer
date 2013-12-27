@@ -76,4 +76,15 @@ exports.premailer = {
 
     test.done();
   },
+
+  verbose: function (test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/email-verbose.html');
+
+
+    test.ok(actual.indexOf('</html>') > 0, "Long email got completely parsed");
+    test.done();
+
+  }
 };

@@ -67,6 +67,12 @@ module.exports = function(grunt) {
         files: {
           'tmp/email-full.html': ['<%= paths.fixtures %>/email-full.html'],
         },
+      },
+
+      verbose: {
+        files: {
+          'tmp/email-verbose.html': ['<%= paths.fixtures %>/email-verbose.html'],
+        }
       }
     },
 
