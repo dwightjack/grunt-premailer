@@ -157,6 +157,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.3 Check for large HTML emails (see https://github.com/dwightjack/grunt-premailer/issues/1)
+
 0.2.2 Bugfix when passing multiple file targets (see #5)
 
 0.2.1 Bugfix in custom premailer script
