@@ -86,5 +86,16 @@ exports.premailer = {
     test.ok(actual.indexOf('</html>') > 0, "Long email got completely parsed");
     test.done();
 
+  },
+
+  mediaq: function (test) {
+    test.expect(2);
+
+    var actual = grunt.file.read('tmp/email-mq.html');
+
+    test.ok(actual.indexOf('@media only screen and (max-width: 600px)') > 0, "Media Queries are preserved");
+    test.ok(actual.indexOf('@media only screen and (min-width: 400px)') > 0, "Media Queries from external files are preserved");
+    test.done();
+
   }
 };
