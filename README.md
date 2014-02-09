@@ -7,14 +7,14 @@
 
 This plugin is a [Grunt](http://gruntjs.com/)  wrapper around the [Premailer](https://github.com/alexdunae/premailer/) Ruby gem developed by Alex Dunae. In order to run it you will need the following packages installed on your system:
 
-* Node.js >= 0.8.11 ([install wiki](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
-* Grunt-cli >= 0.1.7 and Grunt >=0.4.1 (`npm install grunt-cli -g`)
+* Node.js >= 0.10.0 ([install wiki](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
+* Grunt-cli >= 0.1.7 and Grunt >=0.4.2 (`npm install grunt-cli -g`)
 * Ruby >= 1.8.7 ([installers](http://www.ruby-lang.org/en/downloads/))
-* Premailer >= 1.7.8 (`gem install premailer` and, most of the time, `gem install hpricot`)
+* Premailer >= 1.8.0 (`gem install premailer` and, most of the time, `gem install hpricot`)
 
 ## Getting Started
 
-This plugin requires Grunt `~0.4.1`
+This plugin requires Grunt `~0.4.2`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -156,6 +156,8 @@ In this scenario it's advisable to use the `css` option since it's uneffected fr
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+0.2.4 Updated dependencies to Nodejs 0.10+, Grunt 0.4.2+ and Premailer 1.8.0+ (media query support). Added postinstall check for Premailer gem version.
 
 0.2.3 Check for large HTML emails (see https://github.com/dwightjack/grunt-premailer/issues/1)
 
