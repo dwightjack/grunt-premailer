@@ -26,7 +26,8 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "postinstall": "node lib/postinstall.js"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.8.0",
@@ -43,6 +44,8 @@
   "dependencies": {
     "dargs": "~0.1.0",
     "lodash": "~2.4.1",
-    "async": "~0.2.9"
+    "async": "~0.2.9",
+    "chalk": "~0.4.0",
+    "semver": "~2.2.1"
   }
 }

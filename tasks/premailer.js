@@ -26,7 +26,7 @@ module.exports = function(grunt) {
                 css: [],
                 removeClasses: false,
                 removeComments: false,
-                preserveStyles: false,
+                preserveStyles: true,
                 lineLength: 65,
                 ioException: false,
                 verbose: false,

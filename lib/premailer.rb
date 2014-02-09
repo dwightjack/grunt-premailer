@@ -11,7 +11,7 @@ options = {
   :remove_comments => false,
   :verbose => false,
   :line_length => 65,
-  :preserve_styles => false
+  :preserve_styles => true
 }
 
 file_in = nil
