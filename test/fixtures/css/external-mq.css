@@ -1,0 +1,10 @@
+@media only screen and (max-width: 600px) {
+    #test-el {
+        color: green;
+    }
+}
+@media only screen and (min-width: 400px) {
+    #test-el {
+        color: white;
+    }
+}

@@ -73,6 +73,15 @@ module.exports = function(grunt) {
         files: {
           'tmp/email-verbose.html': ['<%= paths.fixtures %>/email-verbose.html'],
         }
+      },
+
+      mediaq: {
+        options: {
+            css: ['<%= paths.fixtures %>/css/external-mq.css']
+        },
+        files: {
+          'tmp/email-mq.html': ['<%= paths.fixtures %>/email-mq.html'],
+        }
       }
     },
 
