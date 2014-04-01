@@ -106,7 +106,7 @@ module.exports = function(grunt) {
                 if (err) {
                     grunt.fail.fatal(err);
                 } else {
-                    grunt.file.delete(tmpFile);
+                    grunt.file.delete(tmpFile, {force: true});
                 }
                 next(err);
             });
