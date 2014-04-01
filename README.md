@@ -157,6 +157,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.5 Added ability to remove temp folders even outside project folder (thanx to @fadomire)
+
 0.2.4 Updated dependencies to Nodejs 0.10+, Grunt 0.4.2+ and Premailer 1.8.0+ (media query support). Added postinstall check for Premailer gem version.
 
 0.2.3 Check for large HTML emails (see https://github.com/dwightjack/grunt-premailer/issues/1)
