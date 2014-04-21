@@ -78,6 +78,12 @@ Default value: `false`
 
 Removes HTML classes.
 
+#### options.removeScripts
+Type: `Boolean`
+Default value: `false`
+
+Removes HTML scripts.
+
 #### options.removeComments
 Type: `Boolean`
 Default value: `false`

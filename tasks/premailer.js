@@ -25,6 +25,7 @@ module.exports = function(grunt) {
                 queryString: '',
                 css: [],
                 removeClasses: false,
+                removeScripts: false,
                 removeComments: false,
                 preserveStyles: false,
                 lineLength: 65,
