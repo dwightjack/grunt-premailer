@@ -56,7 +56,7 @@ opts = OptionParser.new do |opts|
     options[:remove_classes] = v
   end
 
-  opts.on("-r", "--remove-scripts", "Remove HTML scripts") do |v|
+  opts.on("-j", "--remove-scripts", "Remove HTML scripts") do |v|
     options[:remove_scripts] = v
   end
 
