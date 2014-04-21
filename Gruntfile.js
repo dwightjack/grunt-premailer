@@ -62,6 +62,7 @@ module.exports = function(grunt) {
           queryString: 'foo=bar',
           css: ['<%= paths.fixtures %>/css/*.css'],
           removeClasses: true,
+          removeScripts: true,
           preserveStyles: true
         },
         files: {
@@ -77,7 +78,7 @@ module.exports = function(grunt) {
 
       mediaq: {
         options: {
-            css: ['<%= paths.fixtures %>/css/external-mq.css']
+          css: ['<%= paths.fixtures %>/css/external-mq.css']
         },
         files: {
           'tmp/email-mq.html': ['<%= paths.fixtures %>/email-mq.html'],

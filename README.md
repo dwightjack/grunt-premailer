@@ -78,6 +78,12 @@ Default value: `false`
 
 Removes HTML classes.
 
+#### options.removeScripts
+Type: `Boolean`
+Default value: `false`
+
+Removes HTML scripts. _(was `true` by default until v0.2.5)
+
 #### options.removeComments
 Type: `Boolean`
 Default value: `false`
@@ -156,6 +162,8 @@ In this scenario it's advisable to use the `css` option since it's uneffected fr
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+0.2.6 Added option `removeScripts`to preserve/remove `script` tags (was `true` by default until v0.2.5) 
 
 0.2.5 Added ability to remove temp folders even outside project folder (thanx to @fadomire)
 
