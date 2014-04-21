@@ -8,6 +8,7 @@ options = {
   :base_url => nil,
   :link_query_string => nil,
   :remove_classes => false,
+  :remove_scripts => false,
   :remove_comments => false,
   :verbose => false,
   :line_length => 65,
@@ -53,6 +54,10 @@ opts = OptionParser.new do |opts|
 
   opts.on("-r", "--remove-classes", "Remove HTML classes") do |v|
     options[:remove_classes] = v
+  end
+
+  opts.on("-r", "--remove-scripts", "Remove HTML scripts") do |v|
+    options[:remove_scripts] = v
   end
 
   opts.on("--remove-comments", "Remove HTML comments") do |v|

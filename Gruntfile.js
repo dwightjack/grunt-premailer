@@ -62,6 +62,7 @@ module.exports = function(grunt) {
           queryString: 'foo=bar',
           css: ['<%= paths.fixtures %>/css/*.css'],
           removeClasses: true,
+          removeScripts: true,
           preserveStyles: true
         },
         files: {
