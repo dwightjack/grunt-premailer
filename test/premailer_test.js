@@ -96,6 +96,5 @@ exports.premailer = {
     test.ok(actual.indexOf('@media only screen and (max-width: 600px)') > 0, "Media Queries are preserved");
     test.ok(actual.indexOf('@media only screen and (min-width: 400px)') > 0, "Media Queries from external files are preserved");
     test.done();
-
   }
 };

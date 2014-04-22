@@ -163,6 +163,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.7 Minor bug fixing
+
 0.2.6 Added option `removeScripts`to preserve/remove `script` tags (was `true` by default until v0.2.5) 
 
 0.2.5 Added ability to remove temp folders even outside project folder (thanx to @fadomire)

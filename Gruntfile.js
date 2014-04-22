@@ -63,7 +63,8 @@ module.exports = function(grunt) {
           css: ['<%= paths.fixtures %>/css/*.css'],
           removeClasses: true,
           removeScripts: true,
-          preserveStyles: true
+          preserveStyles: true,
+          verbose: true
         },
         files: {
           'tmp/email-full.html': ['<%= paths.fixtures %>/email-full.html'],
