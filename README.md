@@ -163,6 +163,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.7 Merging #18 to fix #16 and #17.
+
 0.2.7 Minor bug fixing
 
 0.2.6 Added option `removeScripts`to preserve/remove `script` tags (was `true` by default until v0.2.5) 
