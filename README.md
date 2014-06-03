@@ -163,7 +163,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-0.2.7 Merging #18 to fix #16 and #17.
+0.2.8 Merging #18 to fix #16 and #17.
 
 0.2.7 Minor bug fixing
 
