@@ -50,8 +50,8 @@ exports.premailer = {
   txt: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/email.txt');
-    var expected = grunt.file.read('test/expected/email.txt');
+    var actual = grunt.file.read('tmp/email.txt').replace(/\n+/,'');
+    var expected = grunt.file.read('test/expected/email.txt').replace("\n",'');
     test.equal(actual, expected + "\n", 'Email converted from HTML to plain text');
 
     test.done();

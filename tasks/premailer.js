@@ -12,7 +12,9 @@ module.exports = function(grunt) {
 
     var dargs = require('dargs'),
         path = require('path'),
+        fs = require('fs'),
         async = require('async'),
+        isUtf8 = require('is-utf8'),
         _ = require('lodash');
 
     grunt.registerMultiTask('premailer', 'Grunt wrapper task for premailer', function() {
@@ -85,6 +87,11 @@ module.exports = function(grunt) {
             if(!srcFile) {
                 //skip!
                 grunt.log.writeln('Input file not found');
+                next(null);
+            }
+            if (!isUtf8(fs.readFileSync(srcFile))) {
+                //skip!
+                grunt.log.writeln('Input file must have utf8 encoding');
                 next(null);
             }
 
