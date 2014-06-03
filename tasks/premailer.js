@@ -72,33 +72,24 @@ module.exports = function(grunt) {
         // Asynchronously iterate over all specified file groups.
         async.each(this.files, function(f, next) {
             // Concat specified files.
-            var src,
-                tmpFile,
+            var srcFile,
                 batchArgs,
                 premailer;
 
-            src = f.src.filter(function(filepath) {
-                if (!grunt.file.exists(filepath)) {
-                    grunt.log.warn('Source file "' + filepath + '" not found.');
-                    return false;
-                } else {
-                    return true;
-                }
-            })
-            .map(function(filepath) {
-                return grunt.file.read(filepath);
-            }).join("\n");
+            grunt.file.write(f.dest,''); // Create empty destination file
 
-            if (src.length === 0) {
-                grunt.log.warn('Nothing to parse');
-                next();
+            srcFile = f.src.filter(function (f) {
+                return grunt.file.isFile(f);
+            }).shift();
+
+            if(!srcFile) {
+                //skip!
+                grunt.log.writeln('Input file not found');
+                next(null);
             }
 
-            //generate a temp file with concatened source
-            tmpFile = path.join(path.dirname(f.dest), _.uniqueId('_tmp_premailer_') + '.html');
-            grunt.file.write(tmpFile, src);
-
-            batchArgs = args.concat(['--file-in', tmpFile, '--file-out', f.dest]);
+            // Premailer expects absolute paths
+            batchArgs = args.concat(['--file-in', path.resolve(srcFile.toString()), '--file-out', path.resolve(f.dest.toString())]);
 
             premailer = grunt.util.spawn({
                 cmd: 'ruby' + (process.platform === 'win32' ? '.exe' : ''),
@@ -106,9 +97,8 @@ module.exports = function(grunt) {
             }, function(err, result, code) {
                 if (err) {
                     grunt.fail.fatal(err);
-                } else {
-                    grunt.file.delete(tmpFile, {force: true});
                 }
+
                 next(err);
             });
 
