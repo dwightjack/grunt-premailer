@@ -72,13 +72,24 @@ module.exports = function(grunt) {
         // Asynchronously iterate over all specified file groups.
         async.each(this.files, function(f, next) {
             // Concat specified files.
-            var batchArgs,
+            var srcFile,
+                batchArgs,
                 premailer;
 
             grunt.file.write(f.dest,''); // Create empty destination file
 
+            srcFile = f.src.filter(function (f) {
+                return grunt.file.isFile(f);
+            }).shift();
+
+            if(!srcFile) {
+                //skip!
+                grunt.log.writeln('Input file not found');
+                next(null);
+            }
+
             // Premailer expects absolute paths
-            batchArgs = args.concat(['--file-in', path.resolve(f.src.toString()), '--file-out', path.resolve(f.dest.toString())]);
+            batchArgs = args.concat(['--file-in', path.resolve(srcFile.toString()), '--file-out', path.resolve(f.dest.toString())]);
 
             premailer = grunt.util.spawn({
                 cmd: 'ruby' + (process.platform === 'win32' ? '.exe' : ''),

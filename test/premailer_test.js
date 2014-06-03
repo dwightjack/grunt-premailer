@@ -38,12 +38,12 @@ exports.premailer = {
   },
 
   multiple: function(test) {
-    test.expect(1);
+    test.expect(2);
 
     var first = grunt.file.read('tmp/email.html');
     var second = grunt.file.read('tmp/email-2.html');
     test.notStrictEqual(first, second, 'Multiple file targets are processed independently.');
-
+    test.strictEqual(first.indexOf('dont-include-me'), -1, 'On multiple src, include only the first existing file');
     test.done();
   },
 
