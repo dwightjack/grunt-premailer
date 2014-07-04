@@ -64,7 +64,7 @@ Base URL to append to relative links.
 Type: `Boolean`
 Default value: `false`
 
-Run `compass compile` with [bundle exec](http://gembundler.com/v1.3/man/bundle-exec.1.html): `bundle exec compass compile`.
+Run premailer with bundle exec ruby.
 
 #### options.queryString
 Type: `String`
