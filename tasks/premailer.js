@@ -37,11 +37,14 @@ module.exports = function(grunt) {
                 mode: 'html'
             });
 
+
+        var keys = Object.keys(options);
+
         // Remove bundleExec from arguments
         keys.splice(keys.indexOf('bundleExec'), 1);
 
         //clean-up falsy options and parse template-like values
-        Object.keys(options).forEach(function(key) {
+        keys.forEach(function(key) {
             var val = options[key];
 
             if (typeof val === 'string') {
