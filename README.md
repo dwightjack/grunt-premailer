@@ -60,6 +60,12 @@ Default value: `''`
 
 Base URL to append to relative links.
 
+#### options.bundleExec
+Type: `Boolean`
+Default value: `false`
+
+Run premailer with bundle exec ruby.
+
 #### options.queryString
 Type: `String`
 Default value: `''`
@@ -70,7 +76,7 @@ Query string to append to links.
 Type: `Array`
 Default value: `[]`
 
-Additional CSS stylesheets to process. Paths are relative to the `Gruntfile.js` file. Any Grunt compatible globbing and template syntax is supported. 
+Additional CSS stylesheets to process. Paths are relative to the `Gruntfile.js` file. Any Grunt compatible globbing and template syntax is supported.
 
 #### options.removeClasses
 Type: `Boolean`
@@ -155,7 +161,7 @@ grunt.initConfig({
 
 **`BaseUrl` option and stylesheets parsing**
 
-Be aware that the base URL gets applied _before_ inlining styles. This process will convert all relative linked stylesheets to absolute ones, possibly preventing the parser to retrieve the resources (since `link` tags point to a different location).  
+Be aware that the base URL gets applied _before_ inlining styles. This process will convert all relative linked stylesheets to absolute ones, possibly preventing the parser to retrieve the resources (since `link` tags point to a different location).
 In this scenario it's advisable to use the `css` option since it's uneffected from `BaseUrl`.
 
 ## Contributing
@@ -163,11 +169,13 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.9 Merging #19 to add Bundler support (thanks to @Iszak)
+
 0.2.8 Merging #18 to fix #16 and #17.
 
 0.2.7 Minor bug fixing
 
-0.2.6 Added option `removeScripts`to preserve/remove `script` tags (was `true` by default until v0.2.5) 
+0.2.6 Added option `removeScripts`to preserve/remove `script` tags (was `true` by default until v0.2.5)
 
 0.2.5 Added ability to remove temp folders even outside project folder (thanx to @fadomire)
 
