@@ -24,6 +24,7 @@ module.exports = function(grunt) {
             series = [],
             options = this.options({
                 baseUrl: null,
+                bundleExec: false,
                 queryString: '',
                 css: [],
                 removeClasses: false,
@@ -36,8 +37,14 @@ module.exports = function(grunt) {
                 mode: 'html'
             });
 
+
+        var keys = Object.keys(options);
+
+        // Remove bundleExec from arguments
+        keys.splice(keys.indexOf('bundleExec'), 1);
+
         //clean-up falsy options and parse template-like values
-        Object.keys(options).forEach(function(key) {
+        keys.forEach(function(key) {
             var val = options[key];
 
             if (typeof val === 'string') {
@@ -95,11 +102,21 @@ module.exports = function(grunt) {
                 next(null);
             }
 
+            // Command to run
+            var cmd;
+            if (options.bundleExec) {
+                cmd = 'bundle';
+
+                args.unshift('exec', 'ruby');
+            } else {
+                cmd = 'ruby' + (process.platform === 'win32' ? '.exe' : '');
+            }
+
             // Premailer expects absolute paths
             batchArgs = args.concat(['--file-in', path.resolve(srcFile.toString()), '--file-out', path.resolve(f.dest.toString())]);
 
             premailer = grunt.util.spawn({
-                cmd: 'ruby' + (process.platform === 'win32' ? '.exe' : ''),
+                cmd: cmd,
                 args: batchArgs
             }, function(err, result, code) {
                 if (err) {
