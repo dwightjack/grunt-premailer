@@ -74,9 +74,22 @@ module.exports = function(grunt) {
                         .join(',');
         }
 
+        // Arguments
         args = dargs(args);
 
         args.unshift(path.join(__dirname, '..', 'lib', 'premailer.rb'));
+
+
+        // Command to run
+        var cmd;
+        if (options.bundleExec) {
+            cmd = 'bundle';
+
+            args.unshift('exec', 'ruby');
+        } else {
+            cmd = 'ruby' + (process.platform === 'win32' ? '.exe' : '');
+        }
+
 
         // Asynchronously iterate over all specified file groups.
         async.each(this.files, function(f, next) {
@@ -100,16 +113,6 @@ module.exports = function(grunt) {
                 //skip!
                 grunt.log.writeln('Input file must have utf8 encoding');
                 next(null);
-            }
-
-            // Command to run
-            var cmd;
-            if (options.bundleExec) {
-                cmd = 'bundle';
-
-                args.unshift('exec', 'ruby');
-            } else {
-                cmd = 'ruby' + (process.platform === 'win32' ? '.exe' : '');
             }
 
             // Premailer expects absolute paths
