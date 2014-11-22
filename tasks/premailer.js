@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 
 
         // Asynchronously iterate over all specified file groups.
-        async.each(this.files, function(f, next) {
+        async.eachLimit(this.files, 10, function(f, next) {
             // Concat specified files.
             var srcFile,
                 batchArgs,
