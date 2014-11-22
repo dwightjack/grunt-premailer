@@ -169,6 +169,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.11 Fixing EventEmitter error (#21)
+
 0.2.10 Merging #20 (thanks to @Iszak)
 
 0.2.9 Merging #19 to add Bundler support (thanks to @Iszak)
