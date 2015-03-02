@@ -9,7 +9,7 @@ This plugin is a [Grunt](http://gruntjs.com/)  wrapper around the [Premailer](ht
 
 * Node.js >= 0.10.0 ([install wiki](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
 * Grunt-cli >= 0.1.7 and Grunt >=0.4.2 (`npm install grunt-cli -g`)
-* Ruby >= 1.8.7 ([installers](http://www.ruby-lang.org/en/downloads/))
+* Ruby >= 1.9.3 ([installers](http://www.ruby-lang.org/en/downloads/))
 * Premailer >= 1.8.0 (`gem install premailer` and, most of the time, `gem install hpricot`)
 
 ## Getting Started
@@ -168,6 +168,8 @@ In this scenario it's advisable to use the `css` option since it's uneffected fr
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+0.2.12 Dependencies updated. Fixing a bug when source and destination files are the same (#25)
 
 0.2.11 Fixing EventEmitter error (#21)
 
