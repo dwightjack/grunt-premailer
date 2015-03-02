@@ -96,9 +96,8 @@ module.exports = function(grunt) {
             // Concat specified files.
             var srcFile,
                 batchArgs,
-                premailer;
-
-            grunt.file.write(f.dest,''); // Create empty destination file
+                premailer,
+                tmpFile;
 
             srcFile = f.src.filter(function (f) {
                 return grunt.file.isFile(f);
@@ -109,14 +108,24 @@ module.exports = function(grunt) {
                 grunt.log.writeln('Input file not found');
                 next(null);
             }
+
             if (!isUtf8(fs.readFileSync(srcFile))) {
                 //skip!
                 grunt.log.writeln('Input file must have utf8 encoding');
                 next(null);
             }
 
+            if (srcFile === f.dest) {
+                //generate a temp dest file
+                tmpFile = path.join(path.dirname(f.dest), _.uniqueId('.premailer-') + '.tmp');
+                grunt.file.write(tmpFile, '');
+                grunt.verbose.writeln('Creating temporary file ' + tmpFile);
+            } else {
+                grunt.file.write(f.dest, ''); // Create empty destination file
+            }
+
             // Premailer expects absolute paths
-            batchArgs = args.concat(['--file-in', path.resolve(srcFile.toString()), '--file-out', path.resolve(f.dest.toString())]);
+            batchArgs = args.concat(['--file-in', path.resolve(srcFile.toString()), '--file-out', path.resolve((tmpFile || f.dest).toString())]);
 
             premailer = grunt.util.spawn({
                 cmd: cmd,
@@ -124,6 +133,12 @@ module.exports = function(grunt) {
             }, function(err, result, code) {
                 if (err) {
                     grunt.fail.fatal(err);
+                }
+                if (tmpFile) {
+                    grunt.file.copy(tmpFile, f.dest);
+                    grunt.file.delete(tmpFile);
+                    grunt.verbose.writeln('Removing temporary file ' + tmpFile);
+
                 }
 
                 next(err);

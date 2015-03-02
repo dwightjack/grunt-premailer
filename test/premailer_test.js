@@ -32,7 +32,7 @@ exports.premailer = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/email.html');
-    test.ok(actual.indexOf('<body style="color: red;">') !== -1, 'Test CSS style is inline.');
+    test.ok(actual.indexOf('<body style="color: red') !== -1, 'Test CSS style is inline.');
 
     test.done();
   },
@@ -96,5 +96,14 @@ exports.premailer = {
     test.ok(actual.indexOf('@media only screen and (max-width: 600px)') > 0, "Media Queries are preserved");
     test.ok(actual.indexOf('@media only screen and (min-width: 400px)') > 0, "Media Queries from external files are preserved");
     test.done();
-  }
+  },
+
+  overwrite: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('test/fixtures/email-overwrite.html');
+    test.ok(actual.indexOf('<body style="color: red') !== -1, 'Content is preserved.');
+
+    test.done();
+  },
 };

@@ -84,6 +84,12 @@ module.exports = function(grunt) {
         files: {
           'tmp/email-mq.html': ['<%= paths.fixtures %>/email-mq.html'],
         }
+      },
+
+      overwrite: {
+        files: {
+          '<%= paths.fixtures %>/email-overwrite.html': ['<%= paths.fixtures %>/email-overwrite.html'],
+        }
       }
     },
 
