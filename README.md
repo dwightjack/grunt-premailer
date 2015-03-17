@@ -96,6 +96,12 @@ Default value: `false`
 
 Removes HTML comments.
 
+#### options.removeIds
+Type: `Boolean`
+Default value: `false`
+
+Removes HTML ids.
+
 
 #### options.preserveStyles
 Type: `Boolean`
@@ -120,6 +126,12 @@ Type: `Boolean`
 Default value: `false`
 
 Prints additional information at runtime.
+
+#### options.warnLevel
+Type: `String`
+Default value: `'safe'`
+
+What level of CSS compatibility warnings to show (either `'none'`, `'safe'`, `'poor'`, `'risky'`).
 
 ### Usage Examples
 
@@ -168,6 +180,8 @@ In this scenario it's advisable to use the `css` option since it's uneffected fr
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+0.2.13 Added option `warnLevel` and `removeIds`
 
 0.2.12 Dependencies updated. Fixing a bug when source and destination files are the same (#25)
 

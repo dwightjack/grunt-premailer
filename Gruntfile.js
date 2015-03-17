@@ -21,16 +21,16 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         'tasks/*.js',
-        '<%= nodeunit.tests %>',
+        '<%= nodeunit.tests %>'
       ],
       options: {
-        jshintrc: '.jshintrc',
-      },
+        jshintrc: '.jshintrc'
+      }
     },
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp'],
+      tests: ['tmp']
     },
 
     // Configuration to be run (and then tested).
@@ -39,22 +39,22 @@ module.exports = function(grunt) {
         options: {
         },
         files: {
-          'tmp/email.html': ['<%= paths.fixtures %>/email.html'],
-        },
+          'tmp/email.html': ['<%= paths.fixtures %>/email.html']
+        }
       },
       multiple: {
         files: {
           'tmp/email.html': ['<%= paths.fixtures %>/inexistant.html', '<%= paths.fixtures %>/email.html', '<%= paths.fixtures %>/email-not-tobe-included.html'],
           'tmp/email-2.html': ['<%= paths.fixtures %>/email-2.html']
-        },
+        }
       },
       txt: {
         options: {
           mode: 'txt'
         },
         files: {
-          'tmp/email.txt': ['<%= paths.fixtures %>/email.html'],
-        },
+          'tmp/email.txt': ['<%= paths.fixtures %>/email.html']
+        }
       },
       full: {
         options: {
@@ -67,13 +67,13 @@ module.exports = function(grunt) {
           verbose: true
         },
         files: {
-          'tmp/email-full.html': ['<%= paths.fixtures %>/email-full.html'],
-        },
+          'tmp/email-full.html': ['<%= paths.fixtures %>/email-full.html']
+        }
       },
 
       verbose: {
         files: {
-          'tmp/email-verbose.html': ['<%= paths.fixtures %>/email-verbose.html'],
+          'tmp/email-verbose.html': ['<%= paths.fixtures %>/email-verbose.html']
         }
       },
 
@@ -82,21 +82,21 @@ module.exports = function(grunt) {
           css: ['<%= paths.fixtures %>/css/external-mq.css']
         },
         files: {
-          'tmp/email-mq.html': ['<%= paths.fixtures %>/email-mq.html'],
+          'tmp/email-mq.html': ['<%= paths.fixtures %>/email-mq.html']
         }
       },
 
       overwrite: {
         files: {
-          '<%= paths.fixtures %>/email-overwrite.html': ['<%= paths.fixtures %>/email-overwrite.html'],
+          '<%= paths.fixtures %>/email-overwrite.html': ['<%= paths.fixtures %>/email-overwrite.html']
         }
       }
     },
 
     // Unit tests.
     nodeunit: {
-      tests: ['test/*_test.js'],
-    },
+      tests: ['test/*_test.js']
+    }
 
   });
 
