@@ -105,5 +105,5 @@ exports.premailer = {
     test.ok(actual.indexOf('<body style="color: red') !== -1, 'Content is preserved.');
 
     test.done();
-  },
+  }
 };

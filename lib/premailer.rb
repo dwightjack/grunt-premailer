@@ -12,7 +12,10 @@ options = {
   :remove_comments => false,
   :verbose => false,
   :line_length => 65,
-  :preserve_styles => false
+  :preserve_styles => false,
+  :escape_url_attributes => true,
+  :replace_html_entities => false,
+  :remove_ids => false
 }
 
 file_in = nil
@@ -56,6 +59,10 @@ opts = OptionParser.new do |opts|
     options[:remove_classes] = v
   end
 
+  opts.on("--remove-ids", "Remove HTML ids") do |v|
+      options[:remove_ids] = v
+  end
+
   opts.on("-j", "--remove-scripts", "Remove HTML scripts") do |v|
     options[:remove_scripts] = v
   end
@@ -74,6 +81,18 @@ opts = OptionParser.new do |opts|
 
   opts.on("-v", "--verbose", "Print additional information at runtime") do |v|
     options[:verbose] = v
+  end
+
+  opts.on("--warn-level N", Integer, "Warning level") do |v|
+      options[:warn_level] = v
+  end
+
+  opts.on("--replace-html-entities", "Replace HTML entities") do |v|
+        options[:replace_html_entities] = v
+  end
+
+  opts.on("--escape-url-attributes", "Replace HTML entities") do |v|
+        options[:escape_url_attributes] = v
   end
 
   opts.on("--file-in STRING", String, "Input filename") do |v|

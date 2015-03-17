@@ -15,7 +15,15 @@ module.exports = function(grunt) {
         fs = require('fs'),
         async = require('async'),
         isUtf8 = require('is-utf8'),
-        _ = require('lodash');
+        _ = require('lodash'),
+        warnLevels;
+
+    warnLevels = {
+        none: 0,
+        safe: 1,
+        poor: 2,
+        risky: 3
+    };
 
     grunt.registerMultiTask('premailer', 'Grunt wrapper task for premailer', function() {
         // Merge task-specific and/or target-specific options with these defaults.
@@ -34,9 +42,12 @@ module.exports = function(grunt) {
                 lineLength: 65,
                 ioException: false,
                 verbose: false,
-                mode: 'html'
+                mode: 'html',
+                warnLevel: warnLevels.none,
+                removeIds: false,
+                replaceHtmlEntities: false,
+                escapeUrlAttributes: true
             });
-
 
         var keys = Object.keys(options);
 
@@ -50,7 +61,8 @@ module.exports = function(grunt) {
             if (typeof val === 'string') {
                 val = grunt.template.process(val);
             }
-            if ((typeof val === 'object' && !_.isEmpty(val)) || (typeof val !== 'object' && !! val)) {
+            //warn level could be 0, preserve it
+            if (key === 'warnLevel' || (typeof val === 'object' && !_.isEmpty(val)) || (typeof val !== 'object' && !!val)) {
                 args[key] = val;
             }
         });
