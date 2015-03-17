@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                 ioException: false,
                 verbose: false,
                 mode: 'html',
-                warnLevel: warnLevels.none,
+                warnLevel: 'safe',
                 removeIds: false,
                 replaceHtmlEntities: false,
                 escapeUrlAttributes: true
@@ -62,10 +62,13 @@ module.exports = function(grunt) {
                 val = grunt.template.process(val);
             }
             //warn level could be 0, preserve it
-            if (key === 'warnLevel' || (typeof val === 'object' && !_.isEmpty(val)) || (typeof val !== 'object' && !!val)) {
+            if ((typeof val === 'object' && !_.isEmpty(val)) || (typeof val !== 'object' && !!val)) {
                 args[key] = val;
             }
         });
+
+        //convert warn level
+        args.warnLevel = _.has(warnLevels, args.warnLevel) ? warnLevels[args.warnLevel] : 0;
 
         //also manage properly the css option
         if (_.has(args, 'css') && Array.isArray(args.css)) {
