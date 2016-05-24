@@ -21,89 +21,92 @@ var grunt = require('grunt');
     test.doesNotThrow(block, [error], [message])
     test.ifError(value)
 */
-
+/* eslint-disable func-names, vars-on-top, quotes, one-var */
 exports.premailer = {
-  setUp: function(done) {
-    // setup here if necessary
-    done();
-  },
+    setUp: function (done) {
+        // setup here if necessary
+        done();
+    },
 
-  html: function(test) {
-    test.expect(1);
+    html: function (test) {
+        test.expect(1);
 
-    var actual = grunt.file.read('tmp/email.html');
-    test.ok(actual.indexOf('<body style="color: red') !== -1, 'Test CSS style is inline.');
+        var actual = grunt.file.read('tmp/email.html');
+        test.ok(actual.indexOf('<body style="color: red') !== -1, 'Test CSS style is inline.');
 
-    test.done();
-  },
+        test.done();
+    },
 
-  multiple: function(test) {
-    test.expect(2);
+    multiple: function (test) {
+        test.expect(2);
 
-    var first = grunt.file.read('tmp/email.html');
-    var second = grunt.file.read('tmp/email-2.html');
-    test.notStrictEqual(first, second, 'Multiple file targets are processed independently.');
-    test.strictEqual(first.indexOf('dont-include-me'), -1, 'On multiple src, include only the first existing file');
-    test.done();
-  },
+        var first = grunt.file.read('tmp/email.html'),
+            second = grunt.file.read('tmp/email-2.html');
 
-  txt: function(test) {
-    test.expect(1);
+        test.notStrictEqual(first, second, 'Multiple file targets are processed independently.');
+        test.strictEqual(first.indexOf('dont-include-me'), -1, 'On multiple src, include only the first existing file');
+        test.done();
+    },
 
-    var actual = grunt.file.read('tmp/email.txt').replace(/\n+/,'');
-    var expected = grunt.file.read('test/expected/email.txt').replace("\n",'');
-    test.equal(actual, expected + "\n", 'Email converted from HTML to plain text');
+    txt: function (test) {
+        test.expect(1);
 
-    test.done();
-  },
+        var actual = grunt.file.read('tmp/email.txt').replace(/\n+/, ''),
+            expected = grunt.file.read('test/expected/email.txt').replace("\n", '');
 
-  full: function(test) {
-    test.expect(6);
+        test.equal(actual, expected + "\n", 'Email converted from HTML to plain text');
 
-    var actual = grunt.file.read('tmp/email-full.html');
+        test.done();
+    },
 
-    var bodyClassRegex = /class=("|')[^'"]*body\-class/;
+    full: function (test) {
+        test.expect(6);
 
-    var externalCSSRegex = /<body style="[^"]*color: red/;
-    var externalCSSRegex2 = /<body style="[^"]*width: 10px/;
+        var actual = grunt.file.read('tmp/email-full.html');
 
-    test.equal(bodyClassRegex.test(actual), false, "Class attributes removed");
-    test.ok(externalCSSRegex.test(actual), "External CSS applied");
-    test.ok(externalCSSRegex2.test(actual), "Second External CSS applied");
-    test.ok(actual.indexOf('<a href="http://www.mydomain.com/link.php?foo=bar">') !== -1, "Base URL and query string applied");
-    test.equal(actual.indexOf('<script'), -1, "Script tags removed");
-    test.ok(actual.indexOf('<style') !== -1, "Style tags are kept in source");
+        var bodyClassRegex = /class=("|')[^'"]*body\-class/;
 
-    test.done();
-  },
+        var externalCSSRegex = /<body style="[^"]*color: red/;
+        var externalCSSRegex2 = /<body style="[^"]*width: 10px/;
 
-  verbose: function (test) {
-    test.expect(1);
+        test.equal(bodyClassRegex.test(actual), false, "Class attributes removed");
+        test.ok(externalCSSRegex.test(actual), "External CSS applied");
+        test.ok(externalCSSRegex2.test(actual), "Second External CSS applied");
+        test.ok(actual.indexOf('<a href="http://www.mydomain.com/link.php?foo=bar">') !== -1, "Base URL and query string applied");
+        test.equal(actual.indexOf('<script'), -1, "Script tags removed");
+        test.ok(actual.indexOf('<style') !== -1, "Style tags are kept in source");
 
-    var actual = grunt.file.read('tmp/email-verbose.html');
+        test.done();
+    },
+
+    verbose: function (test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/email-verbose.html');
 
 
-    test.ok(actual.indexOf('</html>') > 0, "Long email got completely parsed");
-    test.done();
+        test.ok(actual.indexOf('</html>') > 0, "Long email got completely parsed");
+        test.done();
 
-  },
+    },
 
-  mediaq: function (test) {
-    test.expect(2);
+    mediaq: function (test) {
+        test.expect(2);
 
-    var actual = grunt.file.read('tmp/email-mq.html');
+        var actual = grunt.file.read('tmp/email-mq.html');
 
-    test.ok(actual.indexOf('@media only screen and (max-width: 600px)') > 0, "Media Queries are preserved");
-    test.ok(actual.indexOf('@media only screen and (min-width: 400px)') > 0, "Media Queries from external files are preserved");
-    test.done();
-  },
+        test.ok(actual.indexOf('@media only screen and (max-width: 600px)') > 0, "Media Queries are preserved");
+        test.ok(actual.indexOf('@media only screen and (min-width: 400px)') > 0, "Media Queries from external files are preserved");
+        test.done();
+    },
 
-  overwrite: function(test) {
-    test.expect(1);
+    overwrite: function (test) {
+        test.expect(1);
 
-    var actual = grunt.file.read('test/fixtures/email-overwrite.html');
-    test.ok(actual.indexOf('<body style="color: red') !== -1, 'Content is preserved.');
+        var actual = grunt.file.read('test/fixtures/email-overwrite.html');
+        test.ok(actual.indexOf('<body style="color: red') !== -1, 'Content is preserved.');
 
-    test.done();
-  }
+        test.done();
+    }
 };
+/* eslint-enable func-names, vars-on-top, quotes, one-var */
