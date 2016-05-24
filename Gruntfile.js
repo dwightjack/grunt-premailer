@@ -8,111 +8,121 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+/* eslint-disable func-names */
+module.exports = function (grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
+    // Project configuration.
+    grunt.initConfig({
 
-    paths: {
-        fixtures: 'test/fixtures'
-    },
-
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>'
-      ],
-      options: {
-        jshintrc: '.jshintrc'
-      }
-    },
-
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp']
-    },
-
-    // Configuration to be run (and then tested).
-    premailer: {
-      html: {
-        options: {
+        paths: {
+            fixtures: 'test/fixtures'
         },
-        files: {
-          'tmp/email.html': ['<%= paths.fixtures %>/email.html']
-        }
-      },
-      multiple: {
-        files: {
-          'tmp/email.html': ['<%= paths.fixtures %>/inexistant.html', '<%= paths.fixtures %>/email.html', '<%= paths.fixtures %>/email-not-tobe-included.html'],
-          'tmp/email-2.html': ['<%= paths.fixtures %>/email-2.html']
-        }
-      },
-      txt: {
-        options: {
-          mode: 'txt'
+
+        // jshint: {
+        //   all: [
+        //     'Gruntfile.js',
+        //     'tasks/*.js',
+        //     '<%= nodeunit.tests %>'
+        //   ],
+        //   options: {
+        //     jshintrc: '.jshintrc'
+        //   }
+        // },
+
+        eslint: {
+            src: [
+                'Gruntfile.js',
+                'tasks/*.js',
+                '<%= nodeunit.tests %>'
+            ]
         },
-        files: {
-          'tmp/email.txt': ['<%= paths.fixtures %>/email.html']
-        }
-      },
-      full: {
-        options: {
-          baseUrl: 'http://www.mydomain.com/',
-          queryString: 'foo=bar',
-          css: ['<%= paths.fixtures %>/css/*.css'],
-          removeClasses: true,
-          removeScripts: true,
-          preserveStyles: true,
-          verbose: true
+
+        // Before generating any new files, remove any previously-created files.
+        clean: {
+            tests: ['tmp']
         },
-        files: {
-          'tmp/email-full.html': ['<%= paths.fixtures %>/email-full.html']
-        }
-      },
 
-      verbose: {
-        files: {
-          'tmp/email-verbose.html': ['<%= paths.fixtures %>/email-verbose.html']
-        }
-      },
+        // Configuration to be run (and then tested).
+        premailer: {
+            html: {
+                options: {
+                },
+                files: {
+                    'tmp/email.html': ['<%= paths.fixtures %>/email.html']
+                }
+            },
+            multiple: {
+                files: {
+                    'tmp/email.html': ['<%= paths.fixtures %>/inexistant.html', '<%= paths.fixtures %>/email.html', '<%= paths.fixtures %>/email-not-tobe-included.html'],
+                    'tmp/email-2.html': ['<%= paths.fixtures %>/email-2.html']
+                }
+            },
+            txt: {
+                options: {
+                    mode: 'txt'
+                },
+                files: {
+                    'tmp/email.txt': ['<%= paths.fixtures %>/email.html']
+                }
+            },
+            full: {
+                options: {
+                    baseUrl: 'http://www.mydomain.com/',
+                    queryString: 'foo=bar',
+                    css: ['<%= paths.fixtures %>/css/*.css'],
+                    removeClasses: true,
+                    removeScripts: true,
+                    preserveStyles: true,
+                    verbose: true
+                },
+                files: {
+                    'tmp/email-full.html': ['<%= paths.fixtures %>/email-full.html']
+                }
+            },
 
-      mediaq: {
-        options: {
-          css: ['<%= paths.fixtures %>/css/external-mq.css']
+            verbose: {
+                files: {
+                    'tmp/email-verbose.html': ['<%= paths.fixtures %>/email-verbose.html']
+                }
+            },
+
+            mediaq: {
+                options: {
+                    css: ['<%= paths.fixtures %>/css/external-mq.css']
+                },
+                files: {
+                    'tmp/email-mq.html': ['<%= paths.fixtures %>/email-mq.html']
+                }
+            },
+
+            overwrite: {
+                files: {
+                    '<%= paths.fixtures %>/email-overwrite.html': ['<%= paths.fixtures %>/email-overwrite.html']
+                }
+            }
         },
-        files: {
-          'tmp/email-mq.html': ['<%= paths.fixtures %>/email-mq.html']
+
+        // Unit tests.
+        nodeunit: {
+            tests: ['test/*_test.js']
         }
-      },
 
-      overwrite: {
-        files: {
-          '<%= paths.fixtures %>/email-overwrite.html': ['<%= paths.fixtures %>/email-overwrite.html']
-        }
-      }
-    },
+    });
 
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js']
-    }
+    // Actually load this plugin's task(s).
+    grunt.loadTasks('tasks');
 
-  });
+    // These plugins provide necessary tasks.
+    grunt.loadNpmTasks('grunt-eslint');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
+    // Whenever the "test" task is run, first clean the "tmp" dir, then run this
+    // plugin's task(s), then test the result.
+    grunt.registerTask('test', ['clean', 'premailer', 'nodeunit']);
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
-
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'premailer', 'nodeunit']);
-
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+    // By default, lint and run all tests.
+    grunt.registerTask('default', ['eslint', 'test']);
 
 };
+/* eslint-enable func-names */

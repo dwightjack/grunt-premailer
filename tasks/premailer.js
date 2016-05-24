@@ -2,13 +2,13 @@
  * grunt-premailer
  * https://github.com/dwightjack/grunt-premailer
  *
- * Copyright (c) 2013 Marco Solazzi
+ * Copyright (c) 2013-2016 Marco Solazzi
  * Licensed under the MIT license.
  */
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function gruntPremailer(grunt) {
 
     var dargs = require('dargs'),
         path = require('path'),
@@ -25,11 +25,10 @@ module.exports = function(grunt) {
         risky: 3
     };
 
-    grunt.registerMultiTask('premailer', 'Grunt wrapper task for premailer', function() {
+    grunt.registerMultiTask('premailer', 'Grunt wrapper task for premailer', function taskRegistration() {
         // Merge task-specific and/or target-specific options with these defaults.
         var args = {},
             done = this.async(),
-            series = [],
             options = this.options({
                 baseUrl: null,
                 bundleExec: false,
@@ -47,15 +46,17 @@ module.exports = function(grunt) {
                 removeIds: false,
                 replaceHtmlEntities: false,
                 escapeUrlAttributes: true
-            });
+            }),
+            keys,
+            cmd;
 
-        var keys = Object.keys(options);
+        keys = Object.keys(options);
 
         // Remove bundleExec from arguments
         keys.splice(keys.indexOf('bundleExec'), 1);
 
         //clean-up falsy options and parse template-like values
-        keys.forEach(function(key) {
+        keys.forEach(function keyIterator(key) {
             var val = options[key];
 
             if (typeof val === 'string') {
@@ -73,12 +74,12 @@ module.exports = function(grunt) {
         //also manage properly the css option
         if (_.has(args, 'css') && Array.isArray(args.css)) {
             args.css = _(args.css)
-                        .map(function (csspath) {
+                        .map(function mapFn(csspath) {
                             return grunt.config.process(csspath);
                         })
-                        .reduce(function (paths, csspath) {
+                        .reduce(function reduceFn(paths, csspath) {
                             var expanded = grunt.file.expand({
-                                filter: function (src) {
+                                filter: function expandFilterFn(src) {
                                     return grunt.file.isFile(src) && (path.extname(src) === '.css');
                                 }
                             }, csspath);
@@ -96,7 +97,6 @@ module.exports = function(grunt) {
 
 
         // Command to run
-        var cmd;
         if (options.bundleExec) {
             cmd = 'bundle';
 
@@ -107,18 +107,18 @@ module.exports = function(grunt) {
 
 
         // Asynchronously iterate over all specified file groups.
-        async.eachLimit(this.files, 10, function(f, next) {
+        async.eachLimit(this.files, 10, function asyncIterator(f, next) {
             // Concat specified files.
             var srcFile,
                 batchArgs,
                 premailer,
                 tmpFile;
 
-            srcFile = f.src.filter(function (f) {
-                return grunt.file.isFile(f);
+            srcFile = f.src.filter(function filterFn(sFile) {
+                return grunt.file.isFile(sFile);
             }).shift();
 
-            if(!srcFile) {
+            if (!srcFile) {
                 //skip!
                 grunt.log.writeln('Input file not found');
                 next(null);
@@ -145,7 +145,7 @@ module.exports = function(grunt) {
             premailer = grunt.util.spawn({
                 cmd: cmd,
                 args: batchArgs
-            }, function(err, result, code) {
+            }, function premailerCb(err/*, result, code*/) {
                 if (err) {
                     grunt.fail.fatal(err);
                 }
