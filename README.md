@@ -10,7 +10,7 @@ This plugin is a [Grunt](http://gruntjs.com/)  wrapper around the [Premailer](ht
 * Node.js >= 0.12.0 ([install wiki](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
 * Grunt-cli >= 0.1.7 and Grunt >=0.4.2 (`npm install grunt-cli -g`)
 * Ruby >= 1.9.3 ([installers](http://www.ruby-lang.org/en/downloads/))
-* Premailer >= 1.8.0 (`gem install premailer` and, most of the time, `gem install hpricot`)
+* Premailer >= 1.8.0 (`gem install premailer` and, most of the time, `gem install nokogiri`)
 
 ## Getting Started
 
