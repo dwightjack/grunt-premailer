@@ -3,7 +3,7 @@
 > Grunt wrapper task for [Premailer](https://github.com/alexdunae/premailer/)
 
 
-##Requirements
+## Requirements
 
 This plugin is a [Grunt](http://gruntjs.com/)  wrapper around the [Premailer](https://github.com/alexdunae/premailer/) Ruby gem developed by Alex Dunae. In order to run it you will need the following packages installed on your system:
 
@@ -109,6 +109,12 @@ Default value: `false`
 
 Preserve any `link rel=stylesheet` and `style` elements.
 
+#### options.preserveStyleAttribute
+Type: `Boolean`
+Default value: `false`
+
+Preserve original style attribute.
+
 #### options.lineLength
 Type: `Number`
 Default value: `65`
@@ -169,7 +175,7 @@ grunt.initConfig({
 })
 ```
 
-####Usage Notes
+#### Usage Notes
 
 **`BaseUrl` option and stylesheets parsing**
 
