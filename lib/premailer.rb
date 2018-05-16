@@ -13,6 +13,7 @@ options = {
   :verbose => false,
   :line_length => 65,
   :preserve_styles => false,
+  :preserve_style_attribute => false,
   :escape_url_attributes => true,
   :replace_html_entities => false,
   :remove_ids => false
@@ -41,6 +42,10 @@ opts = OptionParser.new do |opts|
 
   opts.on("--preserve-styles", "Preserve link and style tags") do |v|
     options[:preserve_styles] = v
+  end
+
+  opts.on("--preserve-style-attribute", "Preserve original style attribute") do |v|
+    options[:preserve_style_attribute] = v
   end
 
   opts.on("-b", "--base-url STRING", String, "Base URL, useful for local files") do |v|

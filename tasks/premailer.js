@@ -38,6 +38,7 @@ module.exports = function gruntPremailer(grunt) {
                 removeScripts: false,
                 removeComments: false,
                 preserveStyles: false,
+                preserveStyleAttribute: false,
                 lineLength: 65,
                 ioException: false,
                 verbose: false,

@@ -109,6 +109,12 @@ Default value: `false`
 
 Preserve any `link rel=stylesheet` and `style` elements.
 
+#### options.preserveStyleAttribute
+Type: `Boolean`
+Default value: `false`
+
+Preserve original style attribute.
+
 #### options.lineLength
 Type: `Number`
 Default value: `65`
